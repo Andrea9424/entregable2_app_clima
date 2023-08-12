@@ -25,10 +25,10 @@ const Weather = ({ weatherInfo, setWeatherInfo }) => {
     const look = e.target.look.value;
     const API_key = "953d1e78515e01e0e36783d533d11f89";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${look}&appid=${API_key}`;
-
+    console.log(url);
     axios
       .get(url)
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => setWeatherInfo(data))
       .catch((err) => console.log(err));
   };
 
@@ -42,7 +42,9 @@ const Weather = ({ weatherInfo, setWeatherInfo }) => {
         <button className="bg-white/30 px-4 text-black">search</button>
       </form>
 
-      <h2>{weatherInfo?.name} </h2>
+      <h2 className="text-black text-center">
+        {weatherInfo?.name} {weatherInfo?.sys.country}{" "}
+      </h2>
 
       <section className="grid gap-4 sm:grid-cols-[auto_auto] ">
         {/*seccion superior */}
